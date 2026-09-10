@@ -1,8 +1,8 @@
 [wokwi]
 version = 1
-firmware = 'sketch.ino'
-elf = 'sketch.ino'
-vcdFile = 'wokwi/captures/m7_1_logic.vcd'
+firmware = 'wokwi/ci/.pio/build/esp32-c3-devkitm-1/firmware.bin'
+elf = 'wokwi/ci/.pio/build/esp32-c3-devkitm-1/firmware.elf'
+vcdFile = 'wokwi/ci/artifacts/wokwi.vcd'
 
 [serial]
 port = 4000
