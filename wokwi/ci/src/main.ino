@@ -459,6 +459,38 @@ void setup() {
 
   tempSensor.begin();
 
+  const uint8_t tempDeviceCount = tempSensor.getDeviceCount();
+
+  Serial.printf(
+      "BOOT|DS18B20_COUNT=%u\n",
+      tempDeviceCount);
+
+  if (tempDeviceCount == 0) {
+    Serial.println(
+        "BOOT|DS18B20=FAIL|REASON=NO_DEVICE");
+  } else {
+    DeviceAddress tempAddress;
+
+    if (tempSensor.getAddress(tempAddress, 0)) {
+      Serial.println("BOOT|DS18B20=PASS");
+
+      Serial.print("BOOT|DS18B20_ADDR=");
+
+      for (uint8_t i = 0; i < 8; i++) {
+        if (tempAddress[i] < 0x10) {
+          Serial.print("0");
+        }
+
+        Serial.print(tempAddress[i], HEX);
+      }
+
+      Serial.println();
+    } else {
+      Serial.println(
+          "BOOT|DS18B20=FAIL|REASON=ADDRESS_READ");
+    }
+  }
+
   // ----------------------------------------------------------
   // SD card
   // ----------------------------------------------------------
