@@ -1,0 +1,24 @@
+control:
+  aerator:
+    on_do_mg_l: 4.0
+    off_do_mg_l: 5.5
+    status: proposed
+    rationale: "Project architecture baseline; requires experimental calibration."
+
+  ammonia:
+    alarm_free_nh3_mg_l: 0.5
+    status: proposed
+    rationale: "Project feasibility baseline; requires species/site validation."
+
+  battery:
+    low_alert_v: 6.8
+    status: proposed
+
+  pump:
+    sample_cycle_s: 300
+    forced_flow_duration_s: 30
+    status: proposed
+
+simulation:
+  sampling_period_s: 5
+  note: "Simulation timing is accelerated relative to the proposed field sampling cycle."

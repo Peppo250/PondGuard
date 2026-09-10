@@ -1,0 +1,404 @@
+{
+  "do_tia": {
+    "rf_ohm": 47000.0,
+    "cf_f": 1e-07,
+    "tau_s": 0.0047,
+    "fc_hz": 33.862753849339434,
+    "dc": [
+      {
+        "current_uA": 0.5,
+        "vout_mV": 0.0235
+      },
+      {
+        "current_uA": 1.0,
+        "vout_mV": 0.047
+      },
+      {
+        "current_uA": 2.0,
+        "vout_mV": 0.094
+      },
+      {
+        "current_uA": 3.0,
+        "vout_mV": 0.14100000000000001
+      },
+      {
+        "current_uA": 4.0,
+        "vout_mV": 0.188
+      }
+    ],
+    "step": [
+      {
+        "time_ms": 0,
+        "vout_V": 0.0
+      },
+      {
+        "time_ms": 0.1,
+        "vout_V": 0.002968310254279253
+      },
+      {
+        "time_ms": 0.5,
+        "vout_V": 0.01422968425304438
+      },
+      {
+        "time_ms": 1,
+        "vout_V": 0.027023312378845227
+      },
+      {
+        "time_ms": 2,
+        "vout_V": 0.04886747999226742
+      },
+      {
+        "time_ms": 5,
+        "vout_V": 0.09233645908789238
+      },
+      {
+        "time_ms": 10,
+        "vout_V": 0.1242046793325931
+      },
+      {
+        "time_ms": 20,
+        "vout_V": 0.13899941279204947
+      }
+    ]
+  },
+  "ph": {
+    "bias_v": 1.65,
+    "rows": [
+      {
+        "temp_c": 0,
+        "ph": 4,
+        "slope_mV_per_ph": 54.208580092040286,
+        "diff_mV": 162.62574027612087,
+        "within_ads_fs_0p512": true
+      },
+      {
+        "temp_c": 0,
+        "ph": 7,
+        "slope_mV_per_ph": 54.208580092040286,
+        "diff_mV": 0.0,
+        "within_ads_fs_0p512": true
+      },
+      {
+        "temp_c": 0,
+        "ph": 10,
+        "slope_mV_per_ph": 54.208580092040286,
+        "diff_mV": -162.62574027612087,
+        "within_ads_fs_0p512": true
+      },
+      {
+        "temp_c": 25,
+        "ph": 4,
+        "slope_mV_per_ph": 59.17000971789058,
+        "diff_mV": 177.51002915367172,
+        "within_ads_fs_0p512": true
+      },
+      {
+        "temp_c": 25,
+        "ph": 7,
+        "slope_mV_per_ph": 59.17000971789058,
+        "diff_mV": 0.0,
+        "within_ads_fs_0p512": true
+      },
+      {
+        "temp_c": 25,
+        "ph": 10,
+        "slope_mV_per_ph": 59.17000971789058,
+        "diff_mV": -177.51002915367172,
+        "within_ads_fs_0p512": true
+      },
+      {
+        "temp_c": 30,
+        "ph": 4,
+        "slope_mV_per_ph": 60.16229564306064,
+        "diff_mV": 180.4868869291819,
+        "within_ads_fs_0p512": true
+      },
+      {
+        "temp_c": 30,
+        "ph": 7,
+        "slope_mV_per_ph": 60.16229564306064,
+        "diff_mV": 0.0,
+        "within_ads_fs_0p512": true
+      },
+      {
+        "temp_c": 30,
+        "ph": 10,
+        "slope_mV_per_ph": 60.16229564306064,
+        "diff_mV": -180.4868869291819,
+        "within_ads_fs_0p512": true
+      },
+      {
+        "temp_c": 40,
+        "ph": 4,
+        "slope_mV_per_ph": 62.14686749340075,
+        "diff_mV": 186.44060248020222,
+        "within_ads_fs_0p512": true
+      },
+      {
+        "temp_c": 40,
+        "ph": 7,
+        "slope_mV_per_ph": 62.14686749340075,
+        "diff_mV": 0.0,
+        "within_ads_fs_0p512": true
+      },
+      {
+        "temp_c": 40,
+        "ph": 10,
+        "slope_mV_per_ph": 62.14686749340075,
+        "diff_mV": -186.44060248020222,
+        "within_ads_fs_0p512": true
+      }
+    ],
+    "ads_fsr_v": 0.512
+  },
+  "nh3": {
+    "r_series_ohm": 1000.0,
+    "r_load_ohm": 100000.0,
+    "r_eq_ohm": 990.09900990099,
+    "c_f": 1e-07,
+    "tau_s": 9.9009900990099e-05,
+    "fc_hz_loaded": 1607.464925228143,
+    "fc_hz_ideal": 1591.5494309189537,
+    "step": [
+      {
+        "time_us": 0,
+        "normalized_v": 0.0
+      },
+      {
+        "time_us": 10,
+        "normalized_v": 0.09606696711413587
+      },
+      {
+        "time_us": 25,
+        "normalized_v": 0.2231437871606866
+      },
+      {
+        "time_us": 50,
+        "normalized_v": 0.39649442457295947
+      },
+      {
+        "time_us": 100,
+        "normalized_v": 0.6357810204284766
+      },
+      {
+        "time_us": 250,
+        "normalized_v": 0.9199416872132795
+      },
+      {
+        "time_us": 500,
+        "normalized_v": 0.9935906665537436
+      },
+      {
+        "time_us": 1000,
+        "normalized_v": 0.9999589204447747
+      }
+    ]
+  },
+  "battery_divider": {
+    "ratio": 0.24812030075187969,
+    "rows": [
+      {
+        "battery_v": 6.0,
+        "adc_node_v": 1.488721804511278,
+        "divider_current_mA": 0.4511278195488722
+      },
+      {
+        "battery_v": 6.8,
+        "adc_node_v": 1.6872180451127818,
+        "divider_current_mA": 0.5112781954887218
+      },
+      {
+        "battery_v": 7.4,
+        "adc_node_v": 1.8360902255639098,
+        "divider_current_mA": 0.5563909774436091
+      },
+      {
+        "battery_v": 8.4,
+        "adc_node_v": 2.0842105263157893,
+        "divider_current_mA": 0.631578947368421
+      }
+    ],
+    "adc_max_v": 3.3
+  },
+  "power": {
+    "rails": [
+      [
+        "5V_SYS",
+        5.0,
+        1.0
+      ],
+      [
+        "3V3",
+        3.3,
+        0.8
+      ],
+      [
+        "SIM800_4V",
+        4.0,
+        2.0
+      ]
+    ],
+    "rows": [
+      {
+        "battery_v": 6.0,
+        "efficiency": 0.85,
+        "total_output_w": 15.64,
+        "battery_input_w": 18.400000000000002,
+        "battery_input_a": 3.066666666666667
+      },
+      {
+        "battery_v": 7.4,
+        "efficiency": 0.85,
+        "total_output_w": 15.64,
+        "battery_input_w": 18.400000000000002,
+        "battery_input_a": 2.486486486486487
+      },
+      {
+        "battery_v": 8.4,
+        "efficiency": 0.85,
+        "total_output_w": 15.64,
+        "battery_input_w": 18.400000000000002,
+        "battery_input_a": 2.1904761904761907
+      },
+      {
+        "battery_v": 6.0,
+        "efficiency": 0.9,
+        "total_output_w": 15.64,
+        "battery_input_w": 17.377777777777776,
+        "battery_input_a": 2.896296296296296
+      },
+      {
+        "battery_v": 7.4,
+        "efficiency": 0.9,
+        "total_output_w": 15.64,
+        "battery_input_w": 17.377777777777776,
+        "battery_input_a": 2.348348348348348
+      },
+      {
+        "battery_v": 8.4,
+        "efficiency": 0.9,
+        "total_output_w": 15.64,
+        "battery_input_w": 17.377777777777776,
+        "battery_input_a": 2.0687830687830684
+      },
+      {
+        "battery_v": 6.0,
+        "efficiency": 0.95,
+        "total_output_w": 15.64,
+        "battery_input_w": 16.46315789473684,
+        "battery_input_a": 2.743859649122807
+      },
+      {
+        "battery_v": 7.4,
+        "efficiency": 0.95,
+        "total_output_w": 15.64,
+        "battery_input_w": 16.46315789473684,
+        "battery_input_a": 2.2247510668563297
+      },
+      {
+        "battery_v": 8.4,
+        "efficiency": 0.95,
+        "total_output_w": 15.64,
+        "battery_input_w": 16.46315789473684,
+        "battery_input_a": 1.9598997493734334
+      }
+    ],
+    "total_output_w": 15.64
+  },
+  "gsm_cap": {
+    "assumed_pulse_current_a": 2.0,
+    "rows": [
+      {
+        "cap_uF": 220,
+        "pulse_ms": 0.1,
+        "delta_v_ideal": 0.9090909090909092
+      },
+      {
+        "cap_uF": 220,
+        "pulse_ms": 0.5,
+        "delta_v_ideal": 4.545454545454546
+      },
+      {
+        "cap_uF": 220,
+        "pulse_ms": 1.0,
+        "delta_v_ideal": 9.090909090909092
+      },
+      {
+        "cap_uF": 470,
+        "pulse_ms": 0.1,
+        "delta_v_ideal": 0.4255319148936171
+      },
+      {
+        "cap_uF": 470,
+        "pulse_ms": 0.5,
+        "delta_v_ideal": 2.127659574468085
+      },
+      {
+        "cap_uF": 470,
+        "pulse_ms": 1.0,
+        "delta_v_ideal": 4.25531914893617
+      },
+      {
+        "cap_uF": 1000,
+        "pulse_ms": 0.1,
+        "delta_v_ideal": 0.2
+      },
+      {
+        "cap_uF": 1000,
+        "pulse_ms": 0.5,
+        "delta_v_ideal": 1.0
+      },
+      {
+        "cap_uF": 1000,
+        "pulse_ms": 1.0,
+        "delta_v_ideal": 2.0
+      },
+      {
+        "cap_uF": 2200,
+        "pulse_ms": 0.1,
+        "delta_v_ideal": 0.09090909090909093
+      },
+      {
+        "cap_uF": 2200,
+        "pulse_ms": 0.5,
+        "delta_v_ideal": 0.45454545454545464
+      },
+      {
+        "cap_uF": 2200,
+        "pulse_ms": 1.0,
+        "delta_v_ideal": 0.9090909090909093
+      },
+      {
+        "cap_uF": 4700,
+        "pulse_ms": 0.1,
+        "delta_v_ideal": 0.0425531914893617
+      },
+      {
+        "cap_uF": 4700,
+        "pulse_ms": 0.5,
+        "delta_v_ideal": 0.2127659574468085
+      },
+      {
+        "cap_uF": 4700,
+        "pulse_ms": 1.0,
+        "delta_v_ideal": 0.425531914893617
+      },
+      {
+        "cap_uF": 10000,
+        "pulse_ms": 0.1,
+        "delta_v_ideal": 0.02
+      },
+      {
+        "cap_uF": 10000,
+        "pulse_ms": 0.5,
+        "delta_v_ideal": 0.1
+      },
+      {
+        "cap_uF": 10000,
+        "pulse_ms": 1.0,
+        "delta_v_ideal": 0.2
+      }
+    ],
+    "formula": "dV = I*dt/C"
+  }
+}

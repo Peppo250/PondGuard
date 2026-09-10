@@ -1,0 +1,32 @@
+name: PondGuard Hardware Simulation Validation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Install PlatformIO
+        run: python -m pip install platformio
+      - name: Install Wokwi CLI
+        run: curl -L https://wokwi.com/ci/install.sh | sh
+      - name: Run strict validation
+        env:
+          WOKWI_CLI_TOKEN: ${{ secrets.WOKWI_CLI_TOKEN }}
+        run: python tools/run_full_validation.py
+      - name: Upload validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pondguard-m7-6-validation-evidence
+          path: |
+            reports/m7_6/
+            wokwi/ci/artifacts/

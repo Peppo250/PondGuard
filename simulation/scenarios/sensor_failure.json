@@ -1,0 +1,20 @@
+{
+  "name": "sensor_failure",
+  "duration_min": 180,
+  "timestep_min": 5,
+  "initial": {
+    "dissolved_oxygen_mg_l": 6.8,
+    "free_nh3_mg_l": 0.07,
+    "ph": 8.0,
+    "temperature_c": 28.0
+  },
+  "events": [],
+  "sensor_config": {
+    "do_noise_sd": 0.02,
+    "nh3_noise_sd": 0.005,
+    "ph_noise_sd": 0.01,
+    "temperature_noise_sd": 0.03,
+    "failure_probability": 0.15,
+    "seed": 11
+  }
+}

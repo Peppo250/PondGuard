@@ -1,0 +1,28 @@
+PONDGUARD M7.5 CONNECTION FREEZE
+================================
+
+ESP32-C3
+  GPIO0  -> AERATOR_DRIVER (fail-safe ON)
+  GPIO1  -> DO_PUMP_DRIVER (fail-safe OFF)
+  GPIO3  -> SD_CS
+  GPIO4  -> DS18B20 1-Wire
+  GPIO5  -> NH3_ADC (SEN0567 qualitative path)
+  GPIO6  -> I2C_SDA / ADS1115
+  GPIO7  -> I2C_SCL / ADS1115
+  GPIO10 -> SD_SCK
+  GPIO18 -> SD_MOSI
+  GPIO19 -> SD_MISO
+  GPIO20 -> GSM_RX
+  GPIO21 -> GSM_TX
+
+ADS1115 @ 0x48
+  AIN0 -> PH_SIGNAL
+  AIN1 -> DO_SIGNAL
+  AIN2 -> BATTERY_DIVIDER
+  AIN3 -> PH_BIAS
+
+Safety invariants
+  Aerator = ON during unsafe startup/fault state
+  DO circulation pump = OFF on controller fault
+  ESP32-C3 strapping pins GPIO2/8/9 remain unassigned
+  Internal flash GPIO12–17 remain untouched

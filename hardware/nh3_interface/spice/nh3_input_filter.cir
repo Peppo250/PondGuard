@@ -1,0 +1,14 @@
+* PondGuard M6.4 conceptual NH3 analog input filter/protection
+* NOT FOR FABRICATION
+*
+VNH3 SENSOR 0 DC 1.65
+RSER SENSOR ADC 1k
+CFILT ADC 0 100n
+RLOAD ADC 0 100k
+* Ideal clamps represented conceptually; select actual protection device.
+.model DCLAMP D(Is=1n N=1.2)
+DHI ADC 3V3 DCLAMP
+DLO 0 ADC DCLAMP
+V3V3 3V3 0 3.3
+.tran 1m 1
+.end

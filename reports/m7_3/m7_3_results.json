@@ -1,0 +1,54 @@
+{
+  "seed": 7301,
+  "samples": 5000,
+  "do_tia": {
+    "fc_hz": {
+      "min": 30.72017879767194,
+      "max": 37.46575711136272,
+      "mean": 33.95527480295341
+    },
+    "vout_3uA_mV": {
+      "min": 133.9502273458546,
+      "max": 148.04935478451165,
+      "mean": 140.95709599470365
+    },
+    "pass_rate": 1.0
+  },
+  "ph": {
+    "min_slope_mV_per_ph": 52.22400824170016,
+    "max_slope_mV_per_ph": 64.13143934374087,
+    "max_abs_diff_mV": 192.39431803122258,
+    "all_pass": true
+  },
+  "nh3": {
+    "fc_hz": {
+      "min": 1459.797211750507,
+      "max": 1776.6054204217585,
+      "mean": 1612.203056064879
+    },
+    "pass_rate": 1.0
+  },
+  "battery": {
+    "ratio": {
+      "min": 0.24444765357803588,
+      "max": 0.2518305109010703,
+      "mean": 0.24815819122077337
+    },
+    "adc_v": {
+      "min": 1.475915158376682,
+      "max": 2.1110163544799447,
+      "mean": 1.786332723668286
+    },
+    "pass_rate": 1.0
+  },
+  "power": {
+    "output_power_w": 15.64,
+    "max_input_current_a": 3.066666666666667,
+    "all_rail_current_pass": true,
+    "min_battery_v": 6.0
+  },
+  "gsm": {
+    "required_cap_uF_for_1ms_3p4v": 3333.333333333333,
+    "note": "Ideal capacitor-only bound; regulator ESR/control-loop dynamics are not modeled."
+  }
+}

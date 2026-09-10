@@ -1,0 +1,18 @@
+name: 'PondGuard communications and pump interface'
+version: 1
+author: 'PondGuard validation pipeline'
+steps:
+  - wait-serial: 'BOOT|GSM_UART=READY'
+  - write-serial: 'TEST GSM'
+  - wait-serial: 'TEST|GSM_TX=AT_SENT'
+  - write-serial: 'TEST PUMP'
+  - wait-serial: 'TEST|PUMP=ON'
+  - expect-pin:
+      part-id: esp
+      name: '1'
+      value: 1
+  - delay: 1700ms
+  - expect-pin:
+      part-id: esp
+      name: '1'
+      value: 0

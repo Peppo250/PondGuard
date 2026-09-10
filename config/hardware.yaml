@@ -1,0 +1,155 @@
+project:
+  name: PondGuard
+  version: 0.1.0-m6.7
+  controller: ESP32-C3
+  status: pre_fabrication_review
+mcu:
+  board: ESP32-C3
+  logic_voltage_v: 3.3
+  clock_mhz: 160
+buses:
+  i2c:
+    sda: 6
+    scl: 7
+    notes: ADS1115 shared analog-acquisition bus; 400 kHz target or lower
+  onewire:
+    data: 4
+  spi:
+    sck: 10
+    miso: 19
+    mosi: 18
+    cs: 3
+    notes: MicroSD GP-SPI bus; GPIO18/19 usage disables ESP32-C3 USB-JTAG while configured
+      as SPI
+  gsm_uart:
+    tx: 21
+    rx: 20
+    notes: ESP32 TX -> SIM800 RX through 1k/10k divider; SIM800 TX -> ESP32 RX direct,
+      subject to exact module/breakout validation
+analog_inputs:
+  do:
+    interface: DFRobot SEN0237-A signal-conditioner analog output OR custom bare-probe
+      TIA branch
+    mcu_pin: null
+    ads1115_channel: 1
+    conditioner_output_min_v: 0.0
+    conditioner_output_max_v: 3.0
+    custom_tia_rf_ohm: 47000
+    custom_tia_cf_f: 1.0e-07
+    physical_quantity: dissolved oxygen
+    physical_unit: mg/L
+    status: proposed
+    notes: Acquired by ADS1115 AIN1. Use one sensor interface branch, not both in
+      series.
+  nh3:
+    interface: SEN0567 analog gas-sensor output via protected ADC input
+    mcu_pin: 5
+    supply_voltage_v: 3.3
+    load_resistance_ohm: 4700
+    output_max_assumed_v: 3.3
+    physical_quantity: NH3 gas concentration in chamber
+    physical_unit: ppm
+    status: proposed
+    notes: DFRobot explicitly describes SEN0567 as qualitative only. Do not derive
+      an absolute dissolved-NH3 concentration from the analog output without an empirical
+      chamber calibration model.
+  ph:
+    interface: high-impedance pH electrode -> AD8607 dual buffer -> ADS1115 differential
+      input
+    ads1115_channel_p: 0
+    ads1115_channel_n: 3
+    bias_voltage_v: 1.65
+    bias_divider:
+      top_ohm: 10000
+      bottom_ohm: 10000
+    physical_quantity: pH
+    physical_unit: pH
+    status: proposed
+    notes: 'Dual-amplifier path is required for single-supply level shifting: one
+      buffer establishes a low-impedance 1.65 V electrode reference bias and the second
+      buffers the high-impedance measurement electrode.'
+  battery:
+    interface: resistor-divider battery monitor
+    mcu_pin: null
+    divider:
+      top_ohm: 10000
+      bottom_ohm: 3300
+    physical_quantity: battery voltage
+    physical_unit: V
+    status: proposed
+    ads1115_channel: 2
+    notes: Battery divider 10k/3.3k feeds ADS1115 AIN2; 7.4 V nominal / 8.4 V full
+      2S pack.
+digital_sensors:
+  temperature:
+    type: DS18B20
+    bus: onewire
+    pin: 4
+    physical_quantity: water temperature
+    physical_unit: degC
+actuators:
+  aerator:
+    logical_output_pin: 0
+    interface: NPN low-side driver -> SSR-40DA input / isolated relay stage
+    physical_action: paddlewheel aerator ON/OFF
+    fail_safe: 'ON'
+  do_circulation_pump:
+    logical_output_pin: 1
+    interface: NPN low-side driver -> SSR/relay input stage
+    physical_action: DO probe circulation pump ON/OFF
+    fail_safe: 'OFF'
+    notes: Measurement-support actuator; not the main environmental actuator.
+status_outputs:
+  buzzer:
+    pin: null
+    notes: Removed from M6.5 GPIO map to preserve a conflict-free final ESP32-C3 interface
+      allocation.
+storage:
+  microsd:
+    interface: spi
+    cs_pin: 3
+    sck_pin: 10
+    miso_pin: 19
+    mosi_pin: 18
+communications:
+  gsm:
+    interface: uart
+    tx_pin: 21
+    rx_pin: 20
+    model: SIM800L/A6-class
+    status: proposed
+    power_rail: ~4.0 V dedicated rail
+    tx_level_shift: 1k series from ESP32 TX + 10k pulldown at SIM800 RX
+    rx_level_shift: direct SIM800 TX to ESP32 RX for first prototype; validate exact
+      breakout logic levels
+power:
+  solar_panel:
+    nominal_w: 5
+    status: proposed
+    minimum_vmp_v: 7.5
+    architecture_note: CN3722 MPPT input requires 7.5-28 V
+  battery:
+    chemistry: 2S 18650/Li-ion pack
+    nominal_voltage_v: 7.4
+    capacity_ah: 4.4
+    energy_wh_nominal: 32.6
+    status: proposed
+  rails:
+    rail_5v:
+      nominal_v: 5.0
+      source: LMR51430 synchronous buck from protected 2S battery
+      regulator_mpn: LMR51430XFDDCR
+    rail_3v3:
+      nominal_v: 3.3
+      source: LMR51430 synchronous buck from protected 2S battery
+      regulator_mpn: LMR51430XFDDCR
+    rail_sim800_4v:
+      nominal_v: 4.0
+      source: LMR51430 synchronous buck from protected 2S battery
+      regulator_mpn: LMR51430XFDDCR
+safety:
+  aerator_safe_state: 'ON'
+  watchdog_required: true
+  battery_low_alert_v: 6.8
+  usb_jtag_disabled_in_final_gpio_mode: true
+  relay_outputs_require_driver_stage: true

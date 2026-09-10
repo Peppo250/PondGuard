@@ -1,0 +1,15 @@
+* PondGuard M7.2 - DO TIA analytical SPICE-compatible topology
+* Purpose: topology/RC-response check only; replace EOP with exact LM358B model before
+* making stability, noise, phase-margin, or production claims.
+.param I_DO=3u
+.param RF=47k
+.param CF=100n
+VCC VCC 0 5
+Iprobe NIN 0 DC {I_DO}
+EOP OUT 0 NINV 0 1e6
+RBIAS NINV 0 1G
+RF1 OUT NINV {RF}
+CF1 OUT NINV {CF}
+RIN NIN NINV 1m
+.tran 1u 20m
+.end

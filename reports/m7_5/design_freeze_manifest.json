@@ -1,0 +1,106 @@
+{
+  "milestone": "M7.5",
+  "title": "Final Hardware Simulation Package & Design-Freeze Candidate",
+  "generated_utc": "2026-09-08T04:03:16.100138+00:00",
+  "status": "DESIGN_FREEZE_CANDIDATE",
+  "scope": [
+    "connection-level Wokwi hardware simulation",
+    "electrical reference models",
+    "parametric tolerance/boundary analysis",
+    "worst-case transient refinement",
+    "reproducible design assumptions and engineering flags"
+  ],
+  "validation_basis": {
+    "m7_1": "user-verified Wokwi runtime + automated regression",
+    "m7_2": "electrical reference simulation",
+    "m7_3": "5000-sample parametric/Monte-Carlo sweeps",
+    "m7_4": "GSM transient + battery sag worst-case refinement"
+  },
+  "freeze_decisions": {
+    "gsm_bulk_cap_uF_candidate": 4700,
+    "gsm_min_robust_cap_uF_modeled": 3300,
+    "gsm_burst_assumption_A": 2.0,
+    "gsm_burst_duration_ms": 1.0,
+    "gsm_min_rail_v": 3.4,
+    "battery_low_ocv_policy_v_range": [
+      6.4,
+      6.8
+    ],
+    "bms_continuous_rating_A_target": 5.0,
+    "ads1115_address": "0x48",
+    "nh3_mode": "qualitative",
+    "aerator_fail_safe": "ON",
+    "do_pump_fail_safe": "OFF"
+  },
+  "simulation_limits": [
+    "Wokwi does not model the complete physical sensor chemistry.",
+    "SEN0567 remains a qualitative gas-phase input; no universal dissolved-NH3 conversion is claimed.",
+    "M7.4 regulator transient is reduced-order, not vendor-certified closed-loop SPICE.",
+    "KiCad GUI ERC/DRC and PCB footprint verification are not claimed as completed here.",
+    "Exact procurement-hold parts remain subject to physical package/vendor confirmation."
+  ],
+  "open_holds": [
+    "2S Li-ion BMS exact MPN / balancing topology",
+    "5W PV panel exact MPN and measured Voc/Isc for fuse/TVS freeze",
+    "SIM800L breakout exact revision and connector/level behavior",
+    "outdoor keyed IP-rated connectors",
+    "final actuator-driver transistor package/footprint"
+  ],
+  "artifacts": [
+    {
+      "path": "config/pinmap_m6_5.json",
+      "bytes": 2191,
+      "sha256": "5e9e4701949ebca4a47499f0b0eb01a960774af2cadb3bf7252b29ea7f08d696"
+    },
+    {
+      "path": "hardware/bom/M6_7_BOM.csv",
+      "bytes": 2870,
+      "sha256": "e345667d84c0f11933a591d64a359d4936fdc7abeedcfd8d28fe7616171c475d"
+    },
+    {
+      "path": "wokwi/generated/diagram.json",
+      "bytes": 4228,
+      "sha256": "97ac3fe01e0299b21a1fa16032994bf97691241a61646b0dbd6111e7f57537b3"
+    },
+    {
+      "path": "wokwi/generated/sketch.ino",
+      "bytes": 6044,
+      "sha256": "24db232917f5652b88891212285bd4af085b005334d8b1dd2cb9530a6316d372"
+    },
+    {
+      "path": "wokwi/generated/ads1115.chip.c",
+      "bytes": 4419,
+      "sha256": "3b73e35ff167f9657db042ac4b5a34d701dc7f730384e3cba9c495c56b4bb15f"
+    },
+    {
+      "path": "wokwi/generated/ads1115.chip.json",
+      "bytes": 139,
+      "sha256": "e37007ecfca2c16eab0b9594fcafa2acffa50b128341f39783df0c6d7963a523"
+    },
+    {
+      "path": "simulation/m7_2/electrical_sim.py",
+      "bytes": 5130,
+      "sha256": "788fa8bb8ca09da51d52a39f4b0e1b7dbe465ab36f90e73f554c339f2b391458"
+    },
+    {
+      "path": "simulation/m7_3/parametric_sweeps.py",
+      "bytes": 7532,
+      "sha256": "d0929478073fdf7e0318eaea22a6494592661ca6d56ba27a7b26aa1c683b9594"
+    },
+    {
+      "path": "simulation/m7_4/transient_refinement.py",
+      "bytes": 7819,
+      "sha256": "331c8131d9a3c8ccbad59fe6e8d43ffe14020690ce6b656eeee34fd65eaccca5"
+    },
+    {
+      "path": "hardware/do_afe/spice/do_tia_m7_2.cir",
+      "bytes": 399,
+      "sha256": "4f359adf7179a5f25465e7d79b611063221b81f6b748aac78ea961ffd93f3bbe"
+    },
+    {
+      "path": "hardware/power/spice/gsm_transient_reduced_order.cir",
+      "bytes": 360,
+      "sha256": "7cf74e6b76f4d079b9c5b3a3210ec0b33a9cf05610dd9983fbf7b91417e2d8e2"
+    }
+  ]
+}

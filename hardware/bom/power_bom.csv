@@ -1,0 +1,10 @@
+RefDes,Component,Function,Status,Notes
+J1,PV_MODULE,5W-class solar input,SELECT,Choose Vmp >= 7.5V for CN3722 path
+U1,CN3722,Multi-cell solar charger,SELECT,CV divider set for 8.4V; verify design against datasheet
+B1,2S_LIION_4400mAh,Energy storage,SELECT,Cell-level protection/balancing required
+U2,MP2307,5V buck reference,REVIEW,Manufacturer marks MP2307 not recommended for new designs
+U3,AMS1117-3.3,3.3V regulator reference,REVIEW,Consider lower-Iq regulator
+U4,GSM_REGULATOR_4V0,High-current GSM supply,SELECT,Peak >=2A
+F1,PV_FUSE,PV input protection,TBD,Set from selected panel Isc
+F2,BAT_FUSE,Battery protection,TBD,Set from measured system current
+D1,TVS,Transient protection,TBD,Select after rail/panel review

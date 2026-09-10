@@ -1,0 +1,80 @@
+module: PondGuard_M6_1_Power
+status: preliminary_design
+
+nets:
+  - name: PV_IN
+    nominal: "PV module output"
+  - name: BAT+
+    nominal: "7.4 V nominal / 8.4 V full 2S battery"
+  - name: GND
+    nominal: "common ground reference"
+  - name: SYS_5V
+    nominal: "5.0 V regulated"
+  - name: SYS_3V3
+    nominal: "3.3 V regulated"
+  - name: GSM_4V0
+    nominal: "4.0 V regulated GSM rail"
+
+blocks:
+  pv:
+    parts:
+      - "PV module, 5 W target"
+      - "input fuse / current protection"
+      - "TVS / reverse-polarity protection as selected"
+    output: PV_IN
+
+  charger:
+    part: CN3722
+    input: PV_IN
+    output: BAT+
+    battery: "2S Li-ion"
+    notes:
+      - "Set CV for 8.4 V pack"
+      - "Set charge current using RCS"
+      - "Use 10k NTC if required by selected implementation"
+
+  battery_protection:
+    part: "2S Li-ion BMS/protection with cell monitoring/balancing"
+    input: BAT+
+    output: BAT+
+    notes:
+      - "Must protect both cells"
+      - "Must not be omitted for the prototype"
+
+  buck_5v:
+    part: "MP2307 reference; replace before production"
+    input: BAT+
+    output: SYS_5V
+
+  ldo_3v3:
+    part: "AMS1117-3.3 reference; evaluate lower-Iq alternative"
+    input: SYS_5V
+    output: SYS_3V3
+
+  gsm_regulator:
+    part: "dedicated ~4.0 V high-current regulator"
+    input: SYS_5V
+    output: GSM_4V0
+    peak_current_a: 2.0
+
+  loads_3v3:
+    output: SYS_3V3
+    consumers:
+      - ESP32-C3
+      - ADS1115
+      - analog front-end
+      - low-voltage sensors
+
+  loads_5v:
+    output: SYS_5V
+    consumers:
+      - GSM regulator input
+      - measurement-support pump where applicable
+      - other 5 V peripherals
+
+protection:
+  battery_fuse: "TBD after measured current budget"
+  pv_fuse: "TBD after panel Isc"
+  gsm_bulk_capacitor: "Use vendor-recommended local bulk capacitance"
+  reverse_polarity: "TBD"
+  transient_suppression: "TBD"

@@ -1,0 +1,7 @@
+* PondGuard M7.2 - NH3 input RC filter
+VNH3 SENSOR 0 PULSE(0 3.3 0 1u 1u 1m 2m)
+RS SENSOR ADC 1k
+CF ADC 0 100n
+RLOAD ADC 0 100k
+.tran 1u 10m
+.end

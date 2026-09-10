@@ -1,0 +1,31 @@
+{
+  "name": "night_hypoxia",
+  "duration_min": 720,
+  "timestep_min": 5,
+  "initial": {
+    "dissolved_oxygen_mg_l": 6.4,
+    "free_nh3_mg_l": 0.08,
+    "ph": 8.1,
+    "temperature_c": 29.5
+  },
+  "events": [
+    {
+      "time_min": 600,
+      "field": "dissolved_oxygen_mg_l",
+      "value": 3.8
+    },
+    {
+      "time_min": 600,
+      "field": "free_nh3_mg_l",
+      "value": 0.35
+    }
+  ],
+  "sensor_config": {
+    "do_noise_sd": 0.03,
+    "nh3_noise_sd": 0.004,
+    "ph_noise_sd": 0.01,
+    "temperature_noise_sd": 0.03,
+    "failure_probability": 0.0,
+    "seed": 7
+  }
+}

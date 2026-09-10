@@ -1,0 +1,9 @@
+RefDes,Component,Function,Status,Notes
+U1,DFRobot SEN0567,Qualitative NH3 MEMS sensor,SELECT,3.3V prototype supply preferred for direct ADC interface
+R1,1k,ADC input series resistor,PROVISIONAL,Forms RC input filter / transient isolation
+C1,100nF,ADC input filter capacitor,PROVISIONAL,Slowens high-frequency noise
+R2,4.7k,Sensor load resistor,REFERENCE,Vendor specifies RL = 4.7k
+D1,D2,Schottky clamps,RECOMMENDED,Clamp ADC node to safe rails
+J1,CHAMBER_CONNECTOR,Sensor/chamber connection,SELECT,Keep water out of sensor compartment
+MEMBRANE,HYDROPHOBIC_EPTFE,Gas/liquid barrier,RESEARCH,Chamber behavior must be experimentally characterized
+FAN,LOW_POWER_FAN,Headspace mixing,RESEARCH,Only if chamber tests show benefit; control separately

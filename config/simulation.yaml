@@ -1,0 +1,36 @@
+simulation:
+  analog:
+    do:
+      input_min: 0.0
+      input_max: 3.3
+      engineering_min: 0.0
+      engineering_max: 12.0
+      unit: "mg/L"
+
+    nh3:
+      input_min: 0.0
+      input_max: 3.3
+      engineering_min: 0.0
+      engineering_max: 1.2
+      unit: "mg/L"
+
+    ph:
+      input_min: 0.0
+      input_max: 3.3
+      engineering_min: 5.0
+      engineering_max: 10.0
+      unit: "pH"
+
+    battery:
+      input_min: 0.0
+      input_max: 3.3
+      engineering_min: 6.0
+      engineering_max: 8.4
+      unit: "V"
+
+  ds18b20:
+    min_c: 0.0
+    max_c: 50.0
+
+  fault_values:
+    invalid_float: "NaN"

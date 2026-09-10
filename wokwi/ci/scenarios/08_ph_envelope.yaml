@@ -1,0 +1,26 @@
+name: 'PondGuard pH electrical envelope'
+version: 1
+author: 'PondGuard validation pipeline'
+steps:
+  - set-control:
+      part-id: phSignalPot
+      control: position
+      value: 0.554
+  - set-control:
+      part-id: phBiasPot
+      control: position
+      value: 0.500
+  - set-control:
+      part-id: doPot
+      control: position
+      value: 0.60
+  - set-control:
+      part-id: batteryPot
+      control: position
+      value: 0.570
+  - delay: 6500ms
+  - set-control:
+      part-id: phSignalPot
+      control: position
+      value: 0.446
+  - delay: 6500ms

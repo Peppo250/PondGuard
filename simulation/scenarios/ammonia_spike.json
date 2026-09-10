@@ -1,0 +1,26 @@
+{
+  "name": "ammonia_spike",
+  "duration_min": 720,
+  "timestep_min": 5,
+  "initial": {
+    "dissolved_oxygen_mg_l": 6.2,
+    "free_nh3_mg_l": 0.08,
+    "ph": 8.4,
+    "temperature_c": 31.0
+  },
+  "events": [
+    {
+      "time_min": 480,
+      "field": "free_nh3_mg_l",
+      "value": 0.62
+    }
+  ],
+  "sensor_config": {
+    "do_noise_sd": 0.02,
+    "nh3_noise_sd": 0.005,
+    "ph_noise_sd": 0.01,
+    "temperature_noise_sd": 0.03,
+    "failure_probability": 0.0,
+    "seed": 9
+  }
+}

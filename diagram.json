@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "author": "PondGuard",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-c3-devkitm-1", "id": "esp", "top": -90, "left": -20, "attrs": { "label": "ESP32-C3 Main Controller (M6.7 Pinout)" } },
+
+    { "type": "chip-ads1115", "id": "ads", "top": -70, "left": 360, "attrs": { "label": "ADS1115 16-Bit I2C ADC (0x48, SDA:6, SCL:7)" } },
+    { "type": "wokwi-potentiometer", "id": "doPot", "top": -260, "left": 40, "attrs": { "label": "DO Probe (ADS1115 AIN1: 0-3V -> 0-12 mg/L)", "value": "512" } },
+    { "type": "wokwi-potentiometer", "id": "phSignalPot", "top": -260, "left": 200, "attrs": { "label": "pH Signal (ADS1115 AIN0: Buffered Probe)", "value": "512" } },
+    { "type": "wokwi-potentiometer", "id": "phBiasPot", "top": -260, "left": 360, "attrs": { "label": "pH Bias (ADS1115 AIN3: 1.65V Pseudo-GND)", "value": "512" } },
+    { "type": "wokwi-potentiometer", "id": "batteryPot", "top": -260, "left": 520, "attrs": { "label": "Battery Monitor (ADS1115 AIN2: 10k/3.3k Divider, 6.0-8.4V)", "value": "566" } },
+    { "type": "wokwi-potentiometer", "id": "nh3Pot", "top": -90, "left": 560, "attrs": { "label": "SEN0567 NH3 Gas (GPIO 5 ADC, Qualitative)", "value": "170" } },
+
+    { "type": "wokwi-ds18b20", "id": "ds", "top": 110, "left": 380, "attrs": { "label": "DS18B20 Water Temp (GPIO 4 1-Wire)", "temperature": "28" } },
+    { "type": "wokwi-resistor", "id": "rTempPull", "top": 140, "left": 480, "rotate": 90, "attrs": { "label": "4.7k 1-Wire Pullup", "value": "4700" } },
+    { "type": "wokwi-microsd-card", "id": "sd", "top": 100, "left": 600, "attrs": { "label": "MicroSD Datalogger (SPI SCK:10, MOSI:18, MISO:19, CS:3)" } },
+
+    { "type": "wokwi-relay-module", "id": "aeratorRelay", "top": 310, "left": 360, "attrs": { "label": "Aerator SSR Relay (GPIO 0, Fail-Safe: ON)", "transistor": "pnp" } },
+    { "type": "wokwi-relay-module", "id": "pumpRelay", "top": 310, "left": 560, "attrs": { "label": "DO Pump SSR Relay (GPIO 1, Fail-Safe: OFF)", "transistor": "pnp" } },
+    { "type": "wokwi-led", "id": "aeratorLed", "top": 470, "left": 390, "attrs": { "color": "red", "label": "AERATOR (Active: Low DO < 4.0 mg/L or Fault)" } },
+    { "type": "wokwi-led", "id": "pumpLed", "top": 470, "left": 590, "attrs": { "color": "green", "label": "DO CIRCULATION PUMP (Active: Flow Generation)" } },
+
+    { "type": "wokwi-logic-analyzer", "id": "logic", "top": 40, "left": 820, "attrs": {
+      "label": "Logic Analyzer (D0/1:I2C, D2-5:SD SPI, D6/7:GSM UART)",
+      "bufferSize": "250000",
+      "channelNames": "I2C_SCL,I2C_SDA,SD_MOSI,SD_MISO,SD_SCK,SD_CS,GSM_TX,GSM_RX",
+      "triggerMode": "off"
+    } }
+  ],
+  "connections": [
+    [ "esp:3V3.1", "ads:VCC", "red", [] ],
+    [ "esp:GND.1", "ads:GND", "black", [] ],
+    [ "esp:7", "ads:SCL", "blue", [] ],
+    [ "esp:6", "ads:SDA", "green", [] ],
+    [ "ads:ADDR", "esp:GND.1", "black", [] ],
+    [ "ads:ALRT", "esp:GND.1", "black", [] ],
+
+    [ "esp:3V3.1", "doPot:VCC", "red", [] ],
+    [ "esp:GND.1", "doPot:GND", "black", [] ],
+    [ "doPot:SIG", "ads:A1", "green", [] ],
+
+    [ "esp:3V3.1", "phSignalPot:VCC", "red", [] ],
+    [ "esp:GND.1", "phSignalPot:GND", "black", [] ],
+    [ "phSignalPot:SIG", "ads:A0", "green", [] ],
+
+    [ "esp:3V3.1", "phBiasPot:VCC", "red", [] ],
+    [ "esp:GND.1", "phBiasPot:GND", "black", [] ],
+    [ "phBiasPot:SIG", "ads:A3", "green", [] ],
+
+    [ "esp:3V3.1", "batteryPot:VCC", "red", [] ],
+    [ "esp:GND.1", "batteryPot:GND", "black", [] ],
+    [ "batteryPot:SIG", "ads:A2", "green", [] ],
+
+    [ "esp:3V3.1", "nh3Pot:VCC", "red", [] ],
+    [ "esp:GND.1", "nh3Pot:GND", "black", [] ],
+    [ "nh3Pot:SIG", "esp:5", "green", [] ],
+
+    [ "ds:VCC", "esp:3V3.1", "red", [] ],
+    [ "ds:GND", "esp:GND.1", "black", [] ],
+    [ "ds:DQ", "esp:4", "green", [] ],
+    [ "rTempPull:1", "esp:3V3.1", "red", [] ],
+    [ "rTempPull:2", "ds:DQ", "green", [] ],
+
+    [ "sd:VCC", "esp:3V3.1", "red", [] ],
+    [ "sd:GND", "esp:GND.1", "black", [] ],
+    [ "sd:SCK", "esp:10", "blue", [] ],
+    [ "sd:DO", "esp:19", "green", [] ],
+    [ "sd:DI", "esp:18", "green", [] ],
+    [ "sd:CS", "esp:3", "purple", [] ],
+
+    [ "aeratorRelay:VCC", "esp:5V.1", "red", [] ],
+    [ "aeratorRelay:GND", "esp:GND.1", "black", [] ],
+    [ "aeratorRelay:IN", "esp:0", "green", [] ],
+    [ "aeratorLed:A", "aeratorRelay:NO", "red", [] ],
+    [ "aeratorLed:C", "esp:GND.1", "black", [] ],
+
+    [ "pumpRelay:VCC", "esp:5V.1", "red", [] ],
+    [ "pumpRelay:GND", "esp:GND.1", "black", [] ],
+    [ "pumpRelay:IN", "esp:1", "green", [] ],
+    [ "pumpLed:A", "pumpRelay:NO", "green", [] ],
+    [ "pumpLed:C", "esp:GND.1", "black", [] ],
+
+    [ "esp:7", "logic:D0", "blue", [] ],
+    [ "esp:6", "logic:D1", "green", [] ],
+    [ "esp:18", "logic:D2", "red", [] ],
+    [ "esp:19", "logic:D3", "orange", [] ],
+    [ "esp:10", "logic:D4", "purple", [] ],
+    [ "esp:3", "logic:D5", "yellow", [] ],
+    [ "esp:TX", "logic:D6", "cyan", [] ],
+    [ "esp:RX", "logic:D7", "magenta", [] ],
+    [ "esp:GND.1", "logic:GND", "black", [] ]
+  ],
+  "dependencies": {}
+}

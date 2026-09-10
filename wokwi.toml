@@ -1,0 +1,8 @@
+[wokwi]
+version = 1
+firmware = 'sketch.ino'
+elf = 'sketch.ino'
+vcdFile = 'wokwi/captures/m7_1_logic.vcd'
+
+[serial]
+port = 4000

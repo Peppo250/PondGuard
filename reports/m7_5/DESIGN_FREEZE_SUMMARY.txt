@@ -1,0 +1,21 @@
+PONDGUARD M7.5 — FINAL HARDWARE SIMULATION PACKAGE
+Status: DESIGN-FREEZE CANDIDATE
+
+Validated simulation stack:
+  M7.1  Wokwi connection-level hardware simulation
+  M7.2  electrical reference models
+  M7.3  5,000-sample parametric boundary sweeps
+  M7.4  worst-case GSM transient + battery sag refinement
+
+Freeze candidates:
+  GSM bulk capacitor candidate: 4,700 uF
+  Minimum modeled robust GSM bulk capacitance: 3,300 uF
+  Battery low-OCV policy: approximately 6.4–6.8 V
+  BMS continuous-current target: >=5 A
+  Aerator fail-safe: ON
+  DO circulation pump fail-safe: OFF
+  ADS1115 I2C address: 0x48
+  SEN0567 interpretation: qualitative only
+
+This package is NOT a claim of completed PCB fabrication release.
+KiCad GUI ERC/DRC, footprint checks, and procurement-hold MPN confirmation remain outside this simulation freeze.

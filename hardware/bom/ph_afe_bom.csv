@@ -1,0 +1,10 @@
+RefDes,Component,Function,Status,Notes
+J_PH,BNC_PH_PROBE,pH probe connector,SELECT,Use shielded cable and clean connector area
+U1,AD8607,dual ultra-low-bias buffer,RECOMMENDED,Channel A = bias, Channel B = pH measurement
+R1,10k,Bias divider top,PROVISIONAL,3.3V to midpoint
+R2,10k,Bias divider bottom,PROVISIONAL,midpoint to analog ground
+R3,10k,pH output RC resistor,PROVISIONAL,Reference-inspired filter
+C1,1uF,pH output RC capacitor,PROVISIONAL,Reference-inspired filter
+U2,ADS1115,16-bit ADC,SELECT,Differential AIN0/AIN3 for pH
+C2,100nF,AD8607 local decoupling,RECOMMENDED,Near supply pins
+C3,1uF,ADC local bulk decoupling,RECOMMENDED,Near ADS1115 supply

@@ -1,0 +1,9 @@
+RefDes,Component,Function,Status,Notes
+J1,BNC_PROBE,DO probe connector,SELECT,Use chosen branch only
+U1,DFRobot_SEN0237_A_CONDITIONER,Vendor signal conditioner,RECOMMENDED,Branch A
+U2,LM358B,Custom TIA op-amp,RESEARCH,Branch B only
+R1,47k,Custom TIA feedback resistor,PROVISIONAL,Starting value
+C1,100nF,Custom TIA feedback capacitor,PROVISIONAL,Requires stability validation
+U3,ADS1115,16-bit external ADC,SELECT,Choose PGA after measured range
+C2,100nF,Analog IC decoupling,RECOMMENDED,Near IC supply pins
+C3,1uF,Analog rail bulk decoupling,RECOMMENDED,Near analog rail

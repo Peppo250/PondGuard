@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+.pytest_cache/
+
+# PlatformIO & Build artifacts
+.pio/
+build_m4/
+*.exe
+*.o
+*.a
+*.bin
+*.elf
+
+# Wokwi artifacts & tokens
+wokwi/ci/artifacts/
+CI_token.txt
+*.tok
+test_serial.log
+
+# OS / IDE files
+.DS_Store
+Thumbs.db
+.vscode/.browse.c_cpp.db*
+.idea/

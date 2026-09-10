@@ -1,0 +1,17 @@
+Ref,Part/Module,Qty,Function,Voltage/Notes
+U1,ESP32-C3 module/dev board,1,MCU,3.3V logic
+U2,ADS1115 16-bit ADC,1,DO + pH + battery acquisition,I2C at 3.3V
+U3,DS18B20,1,Temperature sensor,3.3V / 1-Wire
+U4,SEN0567,1,NH3 qualitative gas sensor,3.3V
+U5,SIM800L,1,GSM/SMS,~4.0V dedicated rail; up to 2A burst
+U6,MicroSD socket/module,1,Data logging,3.3V SPI
+Q1,Q2,2N2222-class NPN,2,SSR/relay input drivers,External driver stage
+R1,R2,1k,2,SIM800 TX-side series / NH3 input filtering,Use one per function
+R3,10k,1,SIM800 RX pulldown,Sets ~3.0V high from 3.3V TX through 1k
+R4,4.7k,1,DS18B20 pull-up,3.3V
+C1,100uF low-ESR,1,SIM800 bulk bypass,Place close to module
+C2,1uF-10uF ceramic,1,SIM800 local bypass,Place close to module
+C3,100nF,1,NH3 input filter,Place at ESP32 ADC node
+R5,10k,1,Battery divider top,See M6.1 2S monitor
+R6,3.3k,1,Battery divider bottom,See M6.1 2S monitor
+D1,5.1V TVS/Zener,1,SIM800 transient protection,Per module reference design / exact part validate

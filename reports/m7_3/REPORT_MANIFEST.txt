@@ -1,0 +1,20 @@
+PondGuard M7.3 report manifest
+
+Seed: 7301
+Samples per Monte-Carlo-style passive sweep: 5000
+
+CSV:
+- do_tia_monte_carlo.csv
+- ph_temperature_boundary.csv
+- nh3_filter_monte_carlo.csv
+- battery_divider_monte_carlo.csv
+- power_worst_case_sweep.csv
+- gsm_cap_boundary.csv
+
+Plots:
+- plots/do_tia_fc.png
+- plots/nh3_fc.png
+- plots/ph_temperature_envelope.png
+- plots/battery_divider.png
+
+Interpretation: docs/M7_3.md

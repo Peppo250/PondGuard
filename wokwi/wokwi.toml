@@ -1,0 +1,6 @@
+[wokwi]
+version = 1
+vcdFile = 'captures/m7_1_logic.vcd'
+
+[serial]
+port = 4000

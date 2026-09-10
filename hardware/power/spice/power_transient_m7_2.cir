@@ -1,0 +1,14 @@
+* PondGuard M7.2 - lumped power-transient screening model
+* This is not a switching-regulator transistor model.
+* It is a conservative load-step screen for rail headroom and capacitor sizing.
+.param VBAT=7.4
+.param I_GSM=2
+.param Cbulk=2200u
+Vbat BAT 0 {VBAT}
+Rsource BAT VIN 0.08
+* GSM load step: 0 A -> 2 A for 1 ms, repeated every 10 ms.
+IGSM V4 0 PULSE(0 {I_GSM} 1m 1u 1u 1m 10m)
+COUT V4 0 {Cbulk}
+RLOAD4 V4 0 2
+.tran 1u 30m
+.end

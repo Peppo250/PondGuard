@@ -1,0 +1,11 @@
+PondGuard M7.2 — Electrical Simulation Results
+
+This release uses deterministic numerical models and SPICE-compatible netlists. A local ngspice/LTspice executable was not available in the build environment, so transistor-level SPICE execution is not claimed.
+
+Key checks:
+- DO TIA 47k/100nF: 33.86 Hz pole; 4.7 ms tau.
+- pH 25C: 59.17 mV/pH; pH 4/10 => ±177.5 mV relative to 1.65 V bias.
+- NH3 input: 1.59 kHz ideal pole; about 1.61 kHz with modeled 100k ADC load; ~99–100 us tau.
+- Battery divider 10k/3.3k: 8.4V -> 2.084V; 6.8V -> 1.687V.
+- Max selected rail loads: 15.64 W before conversion losses.
+- GSM transient support is parameterized; the capacitor-sizing table is not a sign-off.

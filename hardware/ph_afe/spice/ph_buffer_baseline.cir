@@ -1,0 +1,23 @@
+* PondGuard M6.3 conceptual pH interface
+* NOT FOR FABRICATION
+*
+* The electrode is represented by a voltage source with high series resistance.
+* AD8607 models should replace ideal E sources before stability/noise claims.
+*
+.param VBIAS=1.65
+.param RPROBE=250Meg
+.param VPH=0
+VCC VCC 0 3.3
+VBIAS_SRC VBIAS 0 {VBIAS}
+VPHELECTRODE NPH VBIAS DC {VPH}
+RPH NPH 0 {RPROBE}
+
+* Idealized buffers for topology only.
+E_BIAS BIAS_BUF 0 VBIAS 0 1
+E_PH PH_BUF 0 NPH 0 1
+
+* Differential ADC representation:
+E_DIFF ADC_DIFF 0 PH_BUF BIAS_BUF 1
+
+.tran 1m 1
+.end

@@ -1,0 +1,193 @@
+{
+  "milestone": "M7.6",
+  "title": "Full Automated Hardware Simulation Validation",
+  "status": "FAIL",
+  "strict_policy": true,
+  "repeat": 2,
+  "host": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "stages": [
+    {
+      "name": "python-regression",
+      "command": "C:\\Python314\\python.exe -m pytest -q",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_s": 6.124916076660156,
+      "detail": "........................................................................ [ 77%]\n.....................                                                    [100%]\n93 passed in 4.90s"
+    },
+    {
+      "name": "native-build",
+      "command": "C:\\Python314\\python.exe tools/build_native.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_s": 4.878437042236328,
+      "detail": "Building: g++ -std=c++17 -O2 -I C:\\Users\\Porchezhian\\Downloads\\PondGuard_Wokwi_Full_Hardware_Simulation\\firmware\\include C:\\Users\\Porchezhian\\Downloads\\PondGuard_Wokwi_Full_Hardware_Simulation\\firmware\\src\\control\\controller.cpp C:\\Users\\Porchezhian\\Downloads\\PondGuard_Wokwi_Full_Hardware_Simulation\\firmware\\src\\native_main.cpp -o C:\\Users\\Porchezhian\\Downloads\\PondGuard_Wokwi_Full_Hardware_Simulation\\build_m4\\pondguard_native"
+    },
+    {
+      "name": "native-smoke",
+      "command": "C:\\Python314\\python.exe tools/run_native_tests.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_s": 0.8032763004302979,
+      "detail": ""
+    },
+    {
+      "name": "wokwi-firmware-build",
+      "command": "pio run -d C:\\Users\\Porchezhian\\Downloads\\PondGuard_Wokwi_Full_Hardware_Simulation\\wokwi\\ci",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_s": 6.533356189727783,
+      "detail": "Processing esp32-c3-devkitm-1 (platform: espressif32; board: esp32-c3-devkitm-1; framework: arduino)\n--------------------------------------------------------------------------------\nVerbose mode can be enabled via `-v, --verbose` option\nCONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-c3-devkitm-1.html\nPLATFORM: Espressif 32 (7.1.1) > Espressif ESP32-C3-DevKitM-1\nHARDWARE: ESP32C3 160MHz, 320KB RAM, 4MB Flash\nDEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-builtin, esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)\nPACKAGES: \n - framework-arduinoespressif32 @ 3.20017.241212+sha.dcc1105b \n - tool-esptoolpy @ 2.41100.260830 (4.11.0) \n - toolchain-riscv32-esp @ 8.4.0+2021r2-patch5\nConverting main.ino\nLDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf\nLDF Modes: Finder ~ chain, Compatibility ~ soft\nFound 37 compatible libraries\nScanning dependencies...\nDependency Graph\n|-- OneWire @ 2.3.8\n|-- DallasTemperature @ 4.0.6\n|-- Adafruit ADS1X15 @ 2.6.2\n|-- SD @ 2.0.0\n|-- SPI @ 2.0.0\n|-- Wire @ 2.0.0\nBuilding in release mode\nCompiling .pio\\build\\esp32-c3-devkitm-1\\src\\main.ino.cpp.o\nRetrieving maximum program size .pio\\build\\esp32-c3-devkitm-1\\firmware.elf\nChecking size .pio\\build\\esp32-c3-devkitm-1\\firmware.elf\nAdvanced Memory Usage is available via \"PlatformIO Home > Project Inspect\"\nRAM:   [          ]   4.5% (used 14780 bytes from 327680 bytes)\nFlash: [===       ]  26.8% (used 351520 bytes from 1310720 bytes)\n========================= [SUCCESS] Took 5.82 seconds ========================="
+    },
+    {
+      "name": "wokwi-artifact-check",
+      "command": "firmware.bin + firmware.elf",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_s": 0.0,
+      "detail": "bin=370832 bytes, elf=7701432 bytes"
+    },
+    {
+      "name": "wokwi-lint",
+      "command": "wokwi-cli lint",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_s": 6.7846360206604,
+      "detail": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 warning(s), 2 info\n\n\u00e2\u0161\u00a0 [invalid-attribute] Unknown attribute \"channelNames\" for part \"logic\" (type: wokwi-logic-analyzer) (logic)\n\u00e2\u201e\u00b9 [unsupported-part] Part \"esp\" uses undocumented type \"board-esp32-c3-devkitm-1\". This part may change or be removed in future versions. (esp)\n\u00e2\u201e\u00b9 [unsupported-part] Part \"ds\" uses undocumented type \"wokwi-ds18b20\". This part may change or be removed in future versions. (ds)"
+    },
+    {
+      "name": "wokwi:01_nominal.yaml:run1",
+      "command": "wokwi-cli . --scenario scenarios/01_nominal.yaml --timeout 12000 --timeout-exit-code 0 --serial-log-file artifacts\\01_nominal_run1.serial.log --vcd-file artifacts\\01_nominal_run1.vcd",
+      "status": "FAIL",
+      "exit_code": 1,
+      "duration_s": 3.6525535583496094,
+      "detail": "Wokwi CLI v0.26.1 (9d71b975b7eb)\nConnected to Wokwi Simulation API 1.0.0-20260907-g3f4fedff\n\nDiagram issues in C:\\Users\\Porchezhian\\Downloads\\PondGuard_Wokwi_Full_Hardware_Simulation\\wokwi\\ci\\diagram.json:\n\u00e2\u0161\u00a0 [invalid-attribute] Unknown attribute \"channelNames\" for part \"logic\" (type: wokwi-logic-analyzer) (logic)\n\u00e2\u201e\u00b9 [unsupported-part] Part \"esp\" uses undocumented type \"board-esp32-c3-devkitm-1\". This part may change or be removed in future versions. (esp)\n\u00e2\u201e\u00b9 [unsupported-part] Part \"ds\" uses undocumented type \"wokwi-ds18b20\". This part may change or be removed in future versions. (ds)\nAPI Error: You have used up your Free plan monthly CI minute quota. Please upgrade to a paid plan at https://wokwi.com/pricing."
+    },
+    {
+      "name": "wokwi:01_nominal.yaml:run2",
+      "command": "wokwi-cli . --scenario scenarios/01_nominal.yaml --timeout 12000 --timeout-exit-code 0 --serial-log-file artifacts\\01_nominal_run2.serial.log --vcd-file artifacts\\01_nominal_run2.vcd",
+      "status": "FAIL",
+      "exit_code": 1,
+      "duration_s": 2.939694881439209,
+      "detail": "Wokwi CLI v0.26.1 (9d71b975b7eb)\nConnected to Wokwi Simulation API 1.0.0-20260907-g3f4fedff\n\nDiagram issues in C:\\Users\\Porchezhian\\Downloads\\PondGuard_Wokwi_Full_Hardware_Simulation\\wokwi\\ci\\diagram.json:\n\u00e2\u0161\u00a0 [invalid-attribute] Unknown attribute \"channelNames\" for part \"logic\" (type: wokwi-logic-analyzer) (logic)\n\u00e2\u201e\u00b9 [unsupported-part] Part \"esp\" uses undocumented type \"board-esp32-c3-devkitm-1\". This part may change or be removed in future versions. (esp)\n\u00e2\u201e\u00b9 [unsupported-part] Part \"ds\" uses undocumented type \"wokwi-ds18b20\". This part may change or be removed in future versions. (ds)\nAPI Error: You have used up your Free plan monthly CI minute quota. Please upgrade to a paid plan at https://wokwi.com/pricing."
+    },
+    {
+      "name": "wokwi:04_battery_low.yaml:run1",
+      "command": "wokwi-cli . --scenario scenarios/04_battery_low.yaml --timeout 12000 --timeout-exit-code 0 --serial-log-file artifacts\\04_battery_low_run1.serial.log --vcd-file artifacts\\04_battery_low_run1.vcd",
+      "status": "FAIL",
+      "exit_code": 1,
+      "duration_s": 5.1297924518585205,
+      "detail": "Wokwi CLI v0.26.1 (9d71b975b7eb)\nConnected to Wokwi Simulation API 1.0.0-20260907-g3f4fedff\n\nDiagram issues in C:\\Users\\Porchezhian\\Downloads\\PondGuard_Wokwi_Full_Hardware_Simulation\\wokwi\\ci\\diagram.json:\n\u00e2\u0161\u00a0 [invalid-attribute] Unknown attribute \"channelNames\" for part \"logic\" (type: wokwi-logic-analyzer) (logic)\n\u00e2\u201e\u00b9 [unsupported-part] Part \"esp\" uses undocumented type \"board-esp32-c3-devkitm-1\". This part may change or be removed in future versions. (esp)\n\u00e2\u201e\u00b9 [unsupported-part] Part \"ds\" uses undocumented type \"wokwi-ds18b20\". This part may change or be removed in future versions. (ds)\nAPI Error: You have used up your Free plan monthly CI minute quota. Please upgrade to a paid plan at https://wokwi.com/pricing."
+    },
+    {
+      "name": "wokwi:04_battery_low.yaml:run2",
+      "command": "wokwi-cli . --scenario scenarios/04_battery_low.yaml --timeout 12000 --timeout-exit-code 0 --serial-log-file artifacts\\04_battery_low_run2.serial.log --vcd-file artifacts\\04_battery_low_run2.vcd",
+      "status": "FAIL",
+      "exit_code": 124,
+      "duration_s": 90.04402375221252,
+      "detail": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nDiagram issues in C:\\Users\\Porchezhian\\Downloads\\PondGuard_Wokwi_Full_Hardware_Simulation\\wokwi\\ci\\diagram.json:\n\u00e2\u0161\u00a0 [invalid-attribute] Unknown attribute \"channelNames\" for part \"logic\" (type: wokwi-logic-analyzer) (logic)\n\u00e2\u201e\u00b9 [unsupported-part] Part \"esp\" uses undocumented type \"board-esp32-c3-devkitm-1\". This part may change or be removed in future versions. (esp)\n\u00e2\u201e\u00b9 [unsupported-part] Part \"ds\" uses undocumented type \"wokwi-ds18b20\". This part may change or be removed in future versions. (ds)\n\nTIMEOUT_EXPIRED"
+    }
+  ],
+  "scenario_runs": [
+    {
+      "scenario": "01_nominal.yaml",
+      "repeat": 1,
+      "process_status": "FAIL",
+      "acceptance_status": "FAIL",
+      "acceptance_failures": [
+        "missing boot marker: BOOT|SIMULATION=M7.6_AUTOMATED_VALIDATION",
+        "missing boot marker: BOOT|FAILSAFE=AERATOR_ON",
+        "missing boot marker: BOOT|ADS1115=PASS",
+        "missing boot marker: BOOT|GSM_UART=READY",
+        "no RESULT records emitted"
+      ],
+      "result_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "result_count": 0,
+      "results": [],
+      "serial_log": "wokwi\\ci\\artifacts\\01_nominal_run1.serial.log",
+      "vcd": null
+    },
+    {
+      "scenario": "01_nominal.yaml",
+      "repeat": 2,
+      "process_status": "FAIL",
+      "acceptance_status": "FAIL",
+      "acceptance_failures": [
+        "missing boot marker: BOOT|SIMULATION=M7.6_AUTOMATED_VALIDATION",
+        "missing boot marker: BOOT|FAILSAFE=AERATOR_ON",
+        "missing boot marker: BOOT|ADS1115=PASS",
+        "missing boot marker: BOOT|GSM_UART=READY",
+        "no RESULT records emitted"
+      ],
+      "result_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "result_count": 0,
+      "results": [],
+      "serial_log": "wokwi\\ci\\artifacts\\01_nominal_run2.serial.log",
+      "vcd": null,
+      "repeatability_status": "PASS"
+    },
+    {
+      "scenario": "04_battery_low.yaml",
+      "repeat": 1,
+      "process_status": "FAIL",
+      "acceptance_status": "FAIL",
+      "acceptance_failures": [
+        "missing boot marker: BOOT|SIMULATION=M7.6_AUTOMATED_VALIDATION",
+        "missing boot marker: BOOT|FAILSAFE=AERATOR_ON",
+        "missing boot marker: BOOT|ADS1115=PASS",
+        "missing boot marker: BOOT|GSM_UART=READY",
+        "no RESULT records emitted"
+      ],
+      "result_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "result_count": 0,
+      "results": [],
+      "serial_log": "wokwi\\ci\\artifacts\\04_battery_low_run1.serial.log",
+      "vcd": null
+    },
+    {
+      "scenario": "04_battery_low.yaml",
+      "repeat": 2,
+      "process_status": "FAIL",
+      "acceptance_status": "FAIL",
+      "acceptance_failures": [
+        "missing boot marker: BOOT|SIMULATION=M7.6_AUTOMATED_VALIDATION",
+        "missing boot marker: BOOT|FAILSAFE=AERATOR_ON",
+        "missing boot marker: BOOT|ADS1115=PASS",
+        "missing boot marker: BOOT|GSM_UART=READY",
+        "no RESULT records emitted"
+      ],
+      "result_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "result_count": 0,
+      "results": [],
+      "serial_log": "wokwi\\ci\\artifacts\\04_battery_low_run2.serial.log",
+      "vcd": null,
+      "repeatability_status": "PASS"
+    }
+  ],
+  "artifact_sha256": {
+    "wokwi\\ci\\diagram.json": "4636d1efb579566b99f305081a010ccf16ae339c09d77dc5dbe1c8878f5e6980",
+    "wokwi\\ci\\wokwi.toml": "7a7f0fd7bd8f869f4549c51c62b20d3c19ef32969ffaa1348c07c8b44283fc19",
+    "wokwi\\ci\\ads1115.chip.c": "e67ce2d2e0da1f49e7ae1a0fe3017e6cedef98d7a8f47da7ab58416cd4312bfb",
+    "wokwi\\ci\\ads1115.chip.json": "e37007ecfca2c16eab0b9594fcafa2acffa50b128341f39783df0c6d7963a523",
+    "wokwi\\ci\\platformio.ini": "33d7f1c550a0367d8f60ed198d02bb18ab43b65ab3a4f0e1ccd83fe1209d1874",
+    "wokwi\\ci\\src\\main.ino": "06e6a8ad265223d28cb15eb9b97c7b0cacd990f346d2eb25dc14d32bc68aabcd",
+    "config\\pinmap_m6_5.json": "5e9e4701949ebca4a47499f0b0eb01a960774af2cadb3bf7252b29ea7f08d696",
+    "config\\hardware.yaml": "345fbe27960a12350cc5e47d0566c91ffb9d3a23d2a41adf381af92a4124bec1",
+    "config\\thresholds.yaml": "6b79b4b4210fc4d5db4e4153b44ba70b10a78f90060c698eb8dbc3d45399605a",
+    "wokwi/ci/.pio/build/esp32-c3-devkitm-1/firmware.bin": "a5471ec34f28d5c5c2e9964ac0db1185bc2520639f98289df3ffd343fc13b16c",
+    "wokwi/ci/.pio/build/esp32-c3-devkitm-1/firmware.elf": "8111ffd689ede9c2bb37d27a3fc891aa74e918238c575bcc6fd2d03af6b2268c"
+  },
+  "acceptance_contract": [
+    "toolchain present; no silent skips",
+    "Python regression passes",
+    "native firmware build and smoke test pass",
+    "PlatformIO ESP32-C3 firmware build passes",
+    "Wokwi diagram lint passes",
+    "all selected Wokwi scenarios pass their runtime assertions",
+    "serial RESULT records are emitted",
+    "repeat runs produce identical canonical RESULT hashes",
+    "VCD/log artifacts are produced for every run"
+  ]
+}

@@ -1,0 +1,22 @@
+* PondGuard M6.2 conceptual raw-probe DO TIA
+* NOT FOR FABRICATION
+*
+* The probe is represented by a DC current source for topology checks only.
+* Real probe polarity, source impedance and capacitance must be measured.
+*
+.param I_DO=2u
+.param R_F=47k
+.param C_F=100n
+VCC VCC 0 5
+I_DO_SIM NIN 0 DC {I_DO}
+
+* Ideal op-amp placeholder.
+* Replace this with the exact LM358B macromodel before stability analysis.
+EOP OUT 0 0 NINV 1e6
+RBIAS NINV 0 1G
+R_F1 OUT NINV {R_F}
+C_F1 OUT NINV {C_F}
+RSHORT NIN NINV 1m
+
+.tran 1m 2
+.end

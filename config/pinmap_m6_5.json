@@ -1,0 +1,100 @@
+{
+  "mcu": "ESP32-C3",
+  "notes": [
+    "M6.5 is the first unified MCU/peripheral map.",
+    "GPIO2, GPIO8, GPIO9 are avoided because they are ESP32-C3 strapping pins.",
+    "GPIO12-GPIO17 are avoided because they are normally associated with SPI0/1 flash/PSRAM.",
+    "GPIO18/19 are used for GP-SPI; USB-JTAG is unavailable while those pins are configured as SPI GPIOs.",
+    "GPIO0/1 are used as logical actuator outputs to external driver stages.",
+    "Buzzer has no GPIO in M6.5."
+  ],
+  "assignments": [
+    {
+      "signal": "NH3_ADC",
+      "gpio": 5,
+      "type": "ADC",
+      "notes": "SEN0567 analog through 1k/100nF filter"
+    },
+    {
+      "signal": "I2C_SDA",
+      "gpio": 6,
+      "type": "I2C",
+      "notes": "ADS1115"
+    },
+    {
+      "signal": "I2C_SCL",
+      "gpio": 7,
+      "type": "I2C",
+      "notes": "ADS1115"
+    },
+    {
+      "signal": "DS18B20",
+      "gpio": 4,
+      "type": "1-Wire",
+      "notes": "4.7k pull-up to 3.3V"
+    },
+    {
+      "signal": "SD_SCK",
+      "gpio": 10,
+      "type": "SPI"
+    },
+    {
+      "signal": "SD_MISO",
+      "gpio": 19,
+      "type": "SPI",
+      "notes": "USB-JTAG sacrificed in final GPIO mode"
+    },
+    {
+      "signal": "SD_MOSI",
+      "gpio": 18,
+      "type": "SPI",
+      "notes": "USB-JTAG sacrificed in final GPIO mode"
+    },
+    {
+      "signal": "SD_CS",
+      "gpio": 3,
+      "type": "GPIO"
+    },
+    {
+      "signal": "GSM_TX",
+      "gpio": 21,
+      "type": "UART TX",
+      "notes": "1k series + 10k pulldown at SIM800 RX"
+    },
+    {
+      "signal": "GSM_RX",
+      "gpio": 20,
+      "type": "UART RX"
+    },
+    {
+      "signal": "AERATOR_DRIVER",
+      "gpio": 0,
+      "type": "GPIO",
+      "notes": "external NPN/driver stage; safe state ON"
+    },
+    {
+      "signal": "DO_PUMP_DRIVER",
+      "gpio": 1,
+      "type": "GPIO",
+      "notes": "external NPN/driver stage; safe state OFF"
+    }
+  ],
+  "ads1115": [
+    {
+      "channel": "AIN0",
+      "signal": "PH_SIGNAL"
+    },
+    {
+      "channel": "AIN1",
+      "signal": "DO_SIGNAL"
+    },
+    {
+      "channel": "AIN2",
+      "signal": "BATTERY_DIVIDER"
+    },
+    {
+      "channel": "AIN3",
+      "signal": "PH_BIAS"
+    }
+  ]
+}

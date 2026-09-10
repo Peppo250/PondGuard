@@ -1,0 +1,14 @@
+{
+  "scenarios": 100,
+  "crash_events": 49,
+  "detected_crashes": 49,
+  "missed_crashes": 0,
+  "false_activations": 32,
+  "fail_safe_activations": 44,
+  "crash_detection_rate_pct": 100.0,
+  "false_activation_rate_pct": 32.0,
+  "mean_detection_time_min": -171.43,
+  "mean_detection_lead_time_min": 171.43,
+  "worst_min_do_mg_l": 2.809,
+  "max_crash_score": 100.0
+}

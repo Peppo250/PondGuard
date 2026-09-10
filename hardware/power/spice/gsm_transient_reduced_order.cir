@@ -1,0 +1,10 @@
+* PondGuard M7.4 reduced-order GSM transient boundary model
+* Not a vendor LMR51430 macromodel. Use for capacitor/ESR sensitivity only.
+VREG VREG 0 4.0
+R_ESR VREG VOUT 0.05
+C_BULK VOUT 0 4700u
+I_LOAD VOUT 0 PULSE(0.1 2 0 1u 1u 1m 2m)
+* A true closed-loop regulator macromodel should replace the ideal VREG source
+* before production sign-off.
+.tran 1u 3m
+.end

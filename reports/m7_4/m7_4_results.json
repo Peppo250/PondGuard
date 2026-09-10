@@ -1,0 +1,77 @@
+{
+  "gsm": {
+    "samples": 320,
+    "pass_rate": 0.834375,
+    "robust_min_passing_cap_uF": 3300,
+    "worst_vmin_v": -0.08287817524991192,
+    "worst_case": {
+      "cap_uF": 220,
+      "esr_mohm": 150,
+      "tau_ms": 1.0,
+      "v_esr_drop": 0.3,
+      "v_cap_drop": 3.782878175249912,
+      "vmin_v": -0.08287817524991192,
+      "regulator_current_peak_a": 1.9331496206028174,
+      "pass_3p4v": false
+    },
+    "worst_vmin_by_cap_uF": {
+      "220": -0.08287817524991192,
+      "470": 1.9292910669042969,
+      "1000": 2.8677668014450197,
+      "2200": 3.321712182475009,
+      "3300": 3.447808121650006,
+      "4700": 3.52292910669043,
+      "6800": 3.5776127649183853,
+      "10000": 3.6167766801445023
+    },
+    "assumptions": {
+      "pulse_a": 2.0,
+      "pulse_ms": 1.0,
+      "i_gsm_steady_a": 0.1,
+      "regulator_max_a": 3.0
+    }
+  },
+  "battery": {
+    "samples": 360,
+    "bms_pass_rate": 0.9861111111111112,
+    "min_current_margin_a": -0.06666666666666687,
+    "worst_case": {
+      "battery_oc_v": 6.0,
+      "efficiency": 0.85,
+      "source_r_ohm": 0.05,
+      "bms_limit_a": 3.0,
+      "input_current_a": 3.066666666666667,
+      "source_sag_v": 0.15333333333333335,
+      "battery_terminal_v": 5.846666666666667,
+      "current_margin_a": -0.06666666666666687,
+      "bms_pass": false,
+      "voltage_margin_to_6v_cutoff_v": -0.15333333333333332
+    },
+    "terminal_voltage_fail_cases": 140,
+    "min_oc_voltage_for_6v_terminal": 6.134191745049566,
+    "max_oc_voltage_for_6v_terminal": 6.687817782917155,
+    "terminal_boundary_by_case": {
+      "eta=0.85,R=0.05": 6.149603149604724,
+      "eta=0.85,R=0.10": 6.292415526630865,
+      "eta=0.85,R=0.15": 6.429285639896449,
+      "eta=0.85,R=0.20": 6.560898762952971,
+      "eta=0.85,R=0.25": 6.687817782917155,
+      "eta=0.90,R=0.05": 6.141478774222243,
+      "eta=0.90,R=0.10": 6.276854860651868,
+      "eta=0.90,R=0.15": 6.406855832973662,
+      "eta=0.90,R=0.20": 6.532075247719895,
+      "eta=0.90,R=0.25": 6.653004851412662,
+      "eta=0.95,R=0.05": 6.134191745049566,
+      "eta=0.95,R=0.10": 6.262869257183573,
+      "eta=0.95,R=0.15": 6.386661141037073,
+      "eta=0.95,R=0.20": 6.506084936071482,
+      "eta=0.95,R=0.25": 6.62157279005741
+    },
+    "note": "BMS threshold is a parameter until a physical BMS is selected; source impedance is likewise a model input."
+  },
+  "status": "PASS_WITH_FLAGS",
+  "flags": [
+    "Analytical regulator loop; no vendor LMR51430 macromodel executed.",
+    "BMS rating/UVP/OVP thresholds remain parameterized procurement inputs."
+  ]
+}

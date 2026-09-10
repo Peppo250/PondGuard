@@ -1,0 +1,13 @@
+* PondGuard M7.2 - pH buffer differential-path topology
+* Ideal source/buffer placeholders; use AD8607 macro-model for AC/noise/stability.
+.param VBIAS=1.65
+.param VPH=0.1775
+VDD 3V3 0 3.3
+VB  BIAS 0 {VBIAS}
+VEP NPH BIAS DC {VPH}
+RLEAK NPH 0 250Meg
+EBUF_B BIAS_BUF 0 BIAS 0 1
+EBUF_P PH_BUF 0 NPH 0 1
+EDIFF ADC_DIFF 0 PH_BUF BIAS_BUF 0 1
+.tran 1u 10m
+.end

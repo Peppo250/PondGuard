@@ -1,0 +1,31 @@
+{
+  "name": "generated_0025",
+  "duration_min": 720,
+  "timestep_min": 5,
+  "initial": {
+    "dissolved_oxygen_mg_l": 4.515,
+    "free_nh3_mg_l": 0.166,
+    "ph": 7.229,
+    "temperature_c": 29.68
+  },
+  "events": [
+    {
+      "time_min": 548.23,
+      "field": "dissolved_oxygen_mg_l",
+      "value": 3.746
+    },
+    {
+      "time_min": 548.23,
+      "field": "free_nh3_mg_l",
+      "value": 0.746
+    }
+  ],
+  "sensor_config": {
+    "do_noise_sd": 0.02,
+    "nh3_noise_sd": 0.004,
+    "ph_noise_sd": 0.01,
+    "temperature_noise_sd": 0.03,
+    "failure_probability": 0.0,
+    "seed": 1259
+  }
+}

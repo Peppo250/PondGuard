@@ -1,0 +1,29 @@
+name: 'PondGuard sensor recovery'
+version: 1
+author: 'PondGuard validation pipeline'
+steps:
+  - set-control:
+      part-id: doPot
+      control: position
+      value: 0.60
+  - set-control:
+      part-id: phSignalPot
+      control: position
+      value: 0.482
+  - set-control:
+      part-id: phBiasPot
+      control: position
+      value: 0.500
+  - set-control:
+      part-id: batteryPot
+      control: position
+      value: 0.570
+  - delay: 6500ms
+  - write-serial: 'TEST SENSOR_FAIL'
+  - delay: 6500ms
+  - write-serial: 'TEST SENSOR_OK'
+  - delay: 6500ms
+  - expect-pin:
+      part-id: esp
+      name: '0'
+      value: 0

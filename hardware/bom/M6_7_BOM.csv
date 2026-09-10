@@ -1,0 +1,31 @@
+Ref,Item,MPN_or_Selection,Qty,Status,Function,Notes
+U1,MCU,ESP32-C3-DevKitC-02,1,PROCUREMENT HOLD,MCU prototype,Use module-based production equivalent only after footprint review
+U2,ADC,ADS1115IDGSR,1,FROZEN,16-bit 4-channel ADC,VSSOP-10 active device
+U3,Temperature,DS18B20,1,FROZEN,Water temperature,Select waterproof probe package for field unit
+U4,NH3 sensor,DFRobot SEN0567,1,PROCUREMENT HOLD,Qualitative NH3 gas sensing,Exact breakout revision and connector to be confirmed
+U5,GSM,SIM800L module,1,PROCUREMENT HOLD,GSM/SMS,Exact breakout variant and UART level behavior must be confirmed
+U6,MicroSD socket,Molex 104031-0811 class / equivalent,1,PROCUREMENT HOLD,SPI storage,Exact footprint depends selected socket
+U7,PV charger,CN3722,1,FROZEN,MPPT 2S charger,Verify supplier package/lot and charger resistor network
+U8,5V buck,LMR51430XFDDCR,1,FROZEN,5V system rail,TI active; SOT-23-THN DDC
+U9,3V3 buck,LMR51430XFDDCR,1,FROZEN,3.3V MCU/sensor rail,TI active; SOT-23-THN DDC
+U10,4V GSM buck,LMR51430XFDDCR,1,FROZEN,SIM800L rail,3A-class supply; verify thermal/EMI layout
+U11,pH buffer,AD8607,1,FROZEN,High-Z pH AFE,Use dual op-amp package selected in M6.3
+Q1,Q2,Actuator transistor,MMBT2222A-class,2,PROCUREMENT HOLD,SSR/relay input driver,Exact vendor package to match footprint
+D1,GSM TVS,MMSZ5231BT1G,1,FROZEN,~5.1V GSM transient clamp,SIMCom hardware guide recommended part
+RFB5,Rtop 5V,732k 1%,1,FROZEN,LMR51430 5V feedback,E96
+RFB4,Rtop 4V,567k 1%,1,FROZEN,LMR51430 4V feedback,E96
+RFB3,Rtop 3V3,450k 1%,1,FROZEN,LMR51430 3V3 feedback,E96
+RFB0,Rbottoms,100k 1%,3,FROZEN,LMR51430 feedback,One per regulator
+RNH3,NH3 series,1k,1,FROZEN,NH3 ADC protection/filter,Place at MCU ADC node
+RPH1,RPH2,pH bias divider 10k 1%,2,FROZEN,pH 1.65V bias,Matches M6.3 architecture
+RBAT1,RBAT2,10k/3.3k 1%,2,FROZEN,Battery monitor divider,AIN2
+RDS18B20,Pullup,4.7k 1%,1,FROZEN,DS18B20 data pullup,3.3V
+RGSMTX,Series,1k,1,FROZEN,ESP32 TX to SIM800 RX,Level-shift arrangement from M6.5
+RGSMRX,Pulldown,10k,1,FROZEN,SIM800 RX node,Per M6.5 interface
+CN1,PV connector,Procurement-dependent,1,PROCUREMENT HOLD,Panel input,Voltage/current/environment rating required
+CN2,Battery connector,Procurement-dependent,1,PROCUREMENT HOLD,2S pack input,Keyed + locking preferred
+CN3,GSM connector,Procurement-dependent,1,PROCUREMENT HOLD,SIM800 module interface,RF/grounding layout dependent
+F1,PV fuse,1A slow/fast selection after panel test,1,PROCUREMENT HOLD,PV protection,Final rating from panel short-circuit current
+C1,C2,C3,100uF low-ESR + 10uF + 100nF,3,PROCUREMENT HOLD,SIM800 local decoupling,Place adjacent to GSM power entry
+TVS1,PV TVS,Standoff selected after PV Voc confirmation,1,PROCUREMENT HOLD,PV surge protection,Do not freeze before panel MPN
+BMS,2S Li-ion BMS,2S protection + balancing module,1,PROCUREMENT HOLD,Battery protection,Exact MPN required before PCB release
