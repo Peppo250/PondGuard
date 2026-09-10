@@ -17,9 +17,13 @@ r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
 print(r.stdout)
 print(r.stderr)
 if r.returncode != 0:
+    print(r.stderr)
     raise SystemExit(r.returncode)
+print("BUILD PASS")
 
 r = subprocess.run([str(build / "test_controller_native")], cwd=ROOT, capture_output=True, text=True)
-print(r.stdout)
-print(r.stderr)
-raise SystemExit(r.returncode)
+if r.returncode != 0:
+    print(r.stderr)
+    raise SystemExit(r.returncode)
+print("SMOKE TEST PASS")
+raise SystemExit(0)
