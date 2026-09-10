@@ -15,7 +15,7 @@ constexpr int AERATOR_PIN = 0;
 constexpr int DO_PUMP_PIN = 1;
 
 constexpr int SD_CS = 3;
-constexpr int TEMP_PIN = 4;
+constexpr int TEMP_PIN = 8;
 constexpr int NH3_PIN = 2;
 
 constexpr int I2C_SDA = 6;

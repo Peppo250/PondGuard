@@ -68,7 +68,7 @@
 
     [ "ds:VCC", "esp:3V3.1", "red", [] ],
     [ "ds:GND", "esp:GND.1", "black", [] ],
-    [ "ds:DQ", "esp:4", "green", [] ],
+    [ "ds:DQ", "esp:8", "green", [] ],
     [ "rTempPull:1", "esp:3V3.1", "red", [] ],
     [ "rTempPull:2", "ds:DQ", "green", [] ],
 
